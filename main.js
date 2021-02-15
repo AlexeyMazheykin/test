@@ -660,18 +660,23 @@ let colibri = new Bird2('Colibri', 'Chik-chirik')*/
 let input = document.querySelector("input");
 
 const p = document.querySelector('p')
+
 function inputHandler(event) {
-let url = `https://api.github.com/search/users?q=${event.target.value}`
+
+    if (event.target.value) {
+        let url = `https://api.github.com/search/users?q=${event.target.value}&per_page=100`
         fetch(url)
             .then(data => data.json())
             .then(data => {
                 console.log(data)
                 render(data.items)
             })
+    } else ul.innerHTML = ''
 }
 
 input.addEventListener('keyup', debounce(inputHandler, 500))
 const ul = document.querySelector('ul');
+
 function render(dataArr) {
     ul.innerHTML = ''
     dataArr.forEach(item => {
@@ -687,7 +692,7 @@ function render(dataArr) {
 function debounce(f, ms) {
     console.log('click')
     let isCooldown = false;
-    return function() {
+    return function () {
         if (isCooldown) return;
         f.apply(this, arguments);
         isCooldown = true;
