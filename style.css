@@ -1,0 +1,17 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    flex: calc((100% / 3) - 20px);
+}

@@ -670,15 +670,15 @@ let url = `https://api.github.com/search/users?q=${event.target.value}`
             })
 }
 
-input.addEventListener('input', debounce(inputHandler, 2000))
+input.addEventListener('keyup', debounce(inputHandler, 500))
 const ul = document.querySelector('ul');
 function render(dataArr) {
+    ul.innerHTML = ''
     dataArr.forEach(item => {
         let li = document.createElement('li');
         let img = document.createElement('img')
         img.src = item.avatar_url;
         li.appendChild(img)
-        li.innerText = item.login;
         ul.appendChild(li);
     })
 }
