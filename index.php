@@ -10,7 +10,7 @@ $successOrder = "$firstName, заказ успешно оформлен";
 $categories = ["Sci-fi", "Comedy", "Triller", "Roman", "Programming"];
 //Издательства
 $publisher = ["Exmo", "Book", "Ман Иванов и Фербер", "Освита"];
-$publisher = [];
+//$publisher = [];
 
 $book = [
     "id" => "KJKJ",
@@ -51,9 +51,12 @@ $menu = [
     "contacts" => "Контакты",
     "login" => "Войти",
     "basket" => "Корзина",
-    "Dropdown" => "Контакты",
 
 ];
+foreach ($menu as $key=>$value) {
+
+
+}
 
 
 ?>
@@ -107,18 +110,18 @@ $menu = [
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="?page=delivery"><?= $menu["delivery"] ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?page=contacts"><?= $menu["contacts"] ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?page=login"><?= $menu["login"] ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?page=basket"><?= $menu["basket"] ?></a>
-                </li>
+
+                <?php
+
+                foreach ($menu as $key=>$value) { ?>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="?page=<?= $key ?>"><?= $value ?></a>
+                    </li>
+                    <?php
+                }
+                ?>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -145,14 +148,16 @@ $menu = [
             <h4>Категория</h4>
 
             <div class="row">
-                <?php if (count($categories)) { ?>
-                    <a class="dropdown-item" href="#"><?= $categories[0] ?></a>
-                    <a class="dropdown-item" href="#"><?= $categories[1] ?></a>
-                    <a class="dropdown-item" href="#"><?= $categories[2] ?></a>
-                    <a class="dropdown-item" href="#"><?= $categories[3] ?></a>
-                    <a class="dropdown-item" href="#"><?= $categories[4] ?></a>
-                <?php } else { ?>
-                <a class="dropdown-item" href="#">Нет категорий</a>
+                <?php if (count($categories)) {
+                    $i = 0;
+                    while ($i < count($categories)) {
+                        ?>
+                        <a class="dropdown-item" href="#"><?= $categories[$i] ?></a>
+                        <?php
+                        $i++;
+                    }
+                } else { ?>
+                    <a class="dropdown-item" href="#">Нет категорий</a>
                 <?php } ?>
             </div>
             <hr>
@@ -180,29 +185,23 @@ $menu = [
 
             <div class="row">
 
-                    <ul class="list-group col-md-12 col-sm-12">
-                        <?php if ($publisher) { ?>
-                        <li class="list-group-item">
-                            <input type="checkbox" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Первое</label>
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox" id="exampleCheck2">
-                            <label class="form-check-label" for="exampleCheck2">Второе</label>
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox" id="exampleCheck3">
-                            <label class="form-check-label" for="exampleCheck3">Третье</label>
-                        </li>
-                        <?php } else { ?>
+                <ul class="list-group col-md-12 col-sm-12">
+                    <?php if ($publisher) { ?>
+                        <?php for ($i = 0; $i < count($publisher); $i++) { ?>
+                            <li class="list-group-item">
+                                <input type="checkbox" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1"><?= $publisher[$i] ?></label>
+                            </li>
+                        <?php } ?>
+                    <?php } else { ?>
                         <li class="list-group-item">
                             <span>Издательств нет</span>
                         </li>
-                        <?php } ?>
-                        <li class="list-group-item">
-                            <button type="button" class="btn btn-success">Найти</button>
-                        </li>
-                    </ul>
+                    <?php } ?>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-success">Найти</button>
+                    </li>
+                </ul>
 
             </div>
             <hr>
@@ -211,7 +210,27 @@ $menu = [
         </div>
 
         <div class="col-md-9 col-sm-9 ">
-            <h1>Каталог</h1>
+            <?php
+            $page = $_GET['page'] ?: $page;
+            switch ($page) {
+                case 'index':
+                    $pageName = 'Каталог товаров';
+                    break;
+                case 'basket':
+                    $pageName = 'Корзина товаров';
+                    break;
+                case 'contacts':
+                    $pageName = 'Наши контакты';
+                    break;
+                case 'delivery':
+                    $pageName = 'Доставка';
+                    break;
+                case 'login':
+                    $pageName = 'Вход на сайт';
+                    break;
+            }
+            ?>
+            <h1><?= $pageName ?></h1>
 
             <div class="card-deck">
                 <div class="card">
