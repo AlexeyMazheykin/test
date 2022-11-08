@@ -17,7 +17,7 @@ $daysOfWeek = ["Воскресенье", "Понедельник", "Вторни
 echo $daysOfWeek[date("w")], "<br>";
 //4)
 
-/*for ($i = 0;$i <= 100; $i++) {
+/*for ($i = 1;$i <= 100; $i++) {
     echo "$i <br>";
 }*/
 
@@ -50,7 +50,7 @@ $divArr = [];
 for ($i = 0; $i < 10; $i++) {
     $divArr[] = "<p>String $i</p>";
 }
-
+//16
 
 ?>
 <!doctype html>
@@ -64,7 +64,7 @@ for ($i = 0; $i < 10; $i++) {
 </head>
 <style>
     body.body.active {
-        background: red;
+        background: rgba(0, 255, 225, 0.34);
     }
 
 </style>
@@ -83,6 +83,76 @@ for ($i = 0; $i < 10; $i++) {
         echo $val;
     }
     ?>
+</div>
+<!--CAlendar-->
+
+<div class="calendar">
+    <style>
+
+        .calendar {
+            border: 1px solid #bbb;
+            display: inline-block
+        }
+
+        .calendar table {
+            empty-cells: hide;
+        }
+
+        .calendar caption {
+            padding: 3px;
+            background: linear-gradient(to bottom, #ddd 10%, #bbb);
+        }
+
+        .calendar td {
+            padding: 2px 6px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background: linear-gradient(to bottom, #fff 10%, #ddd);
+            border-radius: 0 0 3px
+        }
+
+        .calendar td:hover {
+            border: 1px solid #888;
+        }
+
+        .calendar .holiday {
+            background: linear-gradient(to bottom, #fff 10%, #ffc);
+        }
+
+        .calendar .today {
+            font-weight: 600;
+            border: 1px solid #888;
+        }
+    </style>
+
+    <table>
+        <caption><span>Июль</span> 2084</caption>
+        <tr>
+            <th>Пн</th>
+            <th>Вт</th>
+            <th>Ср</th>
+            <th>Чт</th>
+            <th>Пт</th>
+            <th>Сб</th>
+            <th>Вс</th>
+        </tr>
+        <?php
+        foreach ($calWeeksArr as $week) {
+        ?>
+        <tr>
+        <?php
+        foreach ($week as $day) {
+        ?>
+            <td><?= $day ?></td>
+            <?php
+        }
+            ?>
+        </tr>
+        <?php
+        }
+        ?>
+
+    </table>
 </div>
 </body>
 </html>
