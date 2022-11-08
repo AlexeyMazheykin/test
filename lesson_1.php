@@ -1,4 +1,5 @@
 <?php
+include "./inc/functions.php";
 //Homework 2
 //phpinfo();
 //1)
@@ -51,7 +52,7 @@ for ($i = 0; $i < 10; $i++) {
     $divArr[] = "<p>String $i</p>";
 }
 //16
-
+$calWeeksArr = getCalendar("11", "2022")
 ?>
 <!doctype html>
 <html lang="ru">
@@ -151,8 +152,48 @@ for ($i = 0; $i < 10; $i++) {
         <?php
         }
         ?>
-
     </table>
+
+
+    <script>
+        class AAA {
+
+            constructor(a) {
+                this.a = a;
+                this.f = function () {
+                    console.log(this.a)
+                }
+            }
+            getA () {
+
+                return this.a
+            }
+
+        }
+        let a = new AAA("f")
+        class BBB extends AAA {
+            constructor(s, q) {
+                super(s);
+                this.s = q
+                this.a = "asdasdas"
+            }
+
+        }
+        let b = new BBB()
+        function A() {
+            this.method = function() {
+                alert('Метод конструктора');
+            }
+        }
+
+        A.prototype.method2 = function() {
+            alert('Метод прототипа');
+        }
+
+        let object = new A()
+
+    </script>
+
 </div>
 </body>
 </html>

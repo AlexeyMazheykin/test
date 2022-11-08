@@ -11,7 +11,7 @@ function getCalendar (string $month, string $year): array
         if ($i === 1) {
             $weekTempArr = $template;
         }
-        $dayOfWeek = date("N", strtotime("$i-$year-$year"));
+        $dayOfWeek = date("N", strtotime("$i-$month-$year"));
         $weekTempArr[$dayOfWeek - 1] = $i;
         $calWeeksArr[$weeksCount] = $weekTempArr;
         if ($dayOfWeek % 7 === 0) {
