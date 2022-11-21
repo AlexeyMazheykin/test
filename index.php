@@ -13,7 +13,7 @@ $publisher = ["Exmo", "Book", "Ман Иванов и Фербер", "Освит
 //$publisher = [];
 
 $book = [
-    "id" => "KJKJ",
+    "id" => "1",
     "autor" => "Stiven King",
     "title" => "PHP 8 for 3 days",
     "price" => 1500,
@@ -21,26 +21,47 @@ $book = [
 ];
 $books = [
     [
-        "id" => "KJKJ",
+        "id" => "2",
         "autor" => "Stiven King",
         "title" => "PHP 8 for 3 days",
         "price" => 1500,
-        "description" => "Fast PHP learning"
+        "description" => "Fast KJKJ learning"
     ],
     [
-        "id" => "KJKE",
+        "id" => "2",
+        "autor" => "Stiven King",
+        "title" => "PHP 8 for 3 days",
+        "price" => 1500,
+        "description" => "Fast KJKJ learning"
+    ],
+    [
+        "id" => "3",
         "autor" => "Tarasov",
         "title" => "MVC on PHP",
         "price" => 2100,
         "description" => "Fast PHP learning"
     ],
     [
-        "id" => "KJKJ",
+        "id" => "4",
         "autor" => "Vasya Pupkin",
-        "title" => "PHP the best",
-        "price" => 1300,
+        "title" => "ЕЕЕ",
+        "price" => 3200,
         "description" => "Slow PHP"
-    ]
+    ],
+    [
+        "id" => "5",
+        "autor" => "Пупкин",
+        "title" => "ННН",
+        "price" => 800,
+        "description" => "Что то о главном"
+    ],
+//    [
+//        "id" => "6",
+//        "autor" => "Сидоров",
+//        "title" => "Алфавит",
+//        "price" => 980,
+//        "description" => "Slow PHP"
+//    ]
 ];
 
 $page = "index"; // Current page
@@ -53,10 +74,10 @@ $menu = [
     "basket" => "Корзина",
 
 ];
-foreach ($menu as $key=>$value) {
-
-
-}
+//foreach ($menu as $key=>$value) {
+//
+//
+//}
 
 
 ?>
@@ -113,13 +134,14 @@ foreach ($menu as $key=>$value) {
 
                 <?php
 
-                foreach ($menu as $key=>$value) { ?>
+                foreach ($menu as $key => $value) { ?>
 
                     <li class="nav-item active">
                         <a class="nav-link" href="?page=<?= $key ?>"><?= $value ?></a>
                     </li>
                     <?php
                 }
+
                 ?>
 
                 <li class="nav-item dropdown">
@@ -231,93 +253,47 @@ foreach ($menu as $key=>$value) {
             }
             ?>
             <h1><?= $pageName ?></h1>
+            <?php
+            $booksToRows = [];
+            $bookCounter = 0;
+            foreach ($books as $key => $value) {
 
-            <div class="card-deck">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title"><?= $book["price"] ?></h3>
-                        <p class="card-text"><small class="text-muted">Автор: <?= $book["autor"] ?></small></p>
-                        <p class="card-text"><?= $book["description"] ?>. Издательство: <a href="#">Полезное</a></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="?add2basket=<?= $book['id'] ?>" class="btn btn-primary">В корзину</a>
-                    </div>
+                if ($key % 3 === 0 && $key !== 0) {
+                    $bookCounter++;
+                }
+                $booksToRows[$bookCounter][] = $value;
+            }
+            ?>
+            <?php
+            foreach ($booksToRows as $key => $row) {
+
+                ?>
+                <div class="card-deck">
+                    <?php
+                    for ($i = 0; $i<3; $i++) {
+                        $title = $row[$i]['title'] ?: "Ничего";
+                        $autor =  $row[$i]['autor'] ?: "Ничего";
+                        $description =  $row[$i]['description'] ?: "Ничего";
+                        ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="http://placehold.it/150x220" alt="...">
+                                <h3 class="card-title"><?= $title ?></h3>
+                                <p class="card-text"><small class="text-muted"><?= $autor ?></small></p>
+                                <p class="card-text"><?= $description ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary">В корзину</button>
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                    ?>
                 </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title">800руб</h3>
-                        <p class="card-text"><small class="text-muted">Автор: sdgfgfg</small></p>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                            content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">В корзину</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title">2100руб</h3>
-                        <p class="card-text"><small class="text-muted">Автор: dfgd</small></p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">В корзину</button>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="card-deck">
-
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title">1200руб</h3>
-                        <p class="card-text"><small class="text-muted">Автор: dfgdfg</small></p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. Издательство: <a href="#">Полезное</a></p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">В корзину</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title">800руб</h3>
-                        <p class="card-text"><small class="text-muted">Автор: sdgfgfg</small></p>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                            content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">В корзину</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <img src="http://placehold.it/150x220" alt="...">
-                        <h3 class="card-title">2100руб</h3>
-                        <p class="card-text"><small class="text-muted">Автор: dfgd</small></p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">В корзину</button>
-                    </div>
-                </div>
-
-            </div>
-
-
+                <?php
+            }
+            ?>
         </div>
 
 
